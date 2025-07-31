@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>رحلتنا الحلوة ❤️</title>
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #fce4ec;
+      text-align: center;
+      padding: 50px;
+    }
+    .hidden {
+      display: none;
+    }
+    .location {
+      margin: 20px;
+      padding: 20px;
+      background-color: #fff3f6;
+      border: 2px solid #ec407a;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    input[type="text"] {
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #ec407a;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>💕رحلة البحث عن الهداية</h1>
+
+  <!-- صفحة القوانين -->
+  <div id="rules">
+    <h2>📜 القوانين</h2>
+    <p>🎯 لازم تحلي صح عشان توصلي.</p>
+    <p>🔍 كل ما توصلي لمكان هتلاقي حد مستنيكي، بعد كده مسموحلك تحلي السؤال اللي بعده.</p>
+    <p>❌ ممنوع تسألي أي حد عن أي حاجة.</p>
+    <p>❤️ خليكي صبورة، معلش.</p>
+    <p>اهم حاجة بجد بشكر كل واحد ساعدني اني اعمل الفكرة والاهم ان الناس دي بتحبك بجد ❤️ (مش اكتر مني)</p>
+    
+
+    <button onclick="startGame()">تمام، يلا نبدأ 💪</button>
+  </div>
+  
+  <!-- الأسئلة والمواقع -->
+  <div id="question1" class="hidden">
+    <h3>📝 السؤال الأول</h3>
+    <p><strong>السؤال:</strong>  اكتر اسم توتة بتحبة تقولة ليكي ؟ </p>
+    <input type="text" id="answer1" placeholder="اكتبي إجابتك هنا">
+    <button onclick="checkAnswer(1, ' دادا ')">إرسال</button>
+  </div>
+  <div id="location1" class="location hidden" onclick="showQuestion(2)">
+    <h3>📍 نادي الزمالك - بوابة 3</h3>
+    <p>هتلاقي اكتر حد متتوقعيش انو يكون موجود روحي وهتفهمي </p>
+    <a href="https://maps.app.goo.gl/JVecLSboYzieaZX76" target="_blank">افتحي على الخريطة 🗺️</a>
+  </div>
+
+  <div id="question2" class="hidden">
+    <h3>📝 السؤال الثاني</h3>
+    <p><strong>السؤال:</strong> اكتر حاجة بتحبي تكليها انتي ولوجي ف النادي ؟ </p>
+    <input type="text" id="answer2" placeholder="اكتبي إجابتك هنا">
+    <button onclick="checkAnswer(2, 'ايس كريم')">إرسال</button>
+  </div>
+  <div id="location2" class="location hidden" onclick="showQuestion(3)">
+    <h3>📍 بوابة 2 -عند النفق</h3>
+    <p>الصبر حلو!</p>
+    <a href="https://maps.app.goo.gl/qwJuk7vbPSsVjori6" target="_blank">افتحي على الخريطة 🗺️</a>
+  </div>
+
+  <div id="question3" class="hidden">
+    <h3>📝 السؤال الثالث</h3>
+    <p><strong>السؤال:</strong> اكتر مكان جمعنا كلنا </p>
+    <input type="text" id="answer3" placeholder="اكتبي إجابتك هنا">
+    <button onclick="checkAnswer(3, 'النادي')">إرسال</button>
+  </div>
+  <div id="location3" class="location hidden" onclick="showQuestion(4)">
+    <h3>يعد النفق هتلاقي سيف بنفسة</h3>
+    <p>   يلا خلاص هااانت ❤️ </p>
+    <a href="https://maps.app.goo.gl/b7z1aBtN6Qguq75DA" target="_blank">افتحي على الخريطة 🗺️</a>
+  </div>
+
+  <div id="question4" class="hidden">
+    <h3>📝 السؤال الرابع</h3>
+    <p><strong>السؤال:</strong> ❤️اول مرة شوفنا بعض امتي ي روحي </p>
+    <input type="text" id="answer4" placeholder="اكتبي إجابتك هنا">
+    <button onclick="checkAnswer(4, '10/2')">إرسال</button>
+  </div>
+  <div id="location4" class="location hidden" onclick="showQuestion(5)">
+    <h3>لوجي وسيف عارفين الطريق خلاص اهو  </h3>
+    <p> انا ي حبيبة بحيك اوي بجد وبجد انا بحاول افرحك بجد عشان انتي تستهالي كل  الفرحة الي ف الدينا يا حببتي يا احلي دكتورة ف الدنيا انا مستنيكي اهو ي حببتي عشان اديكي احلي هدية جبتهالك   😋</p>
+    <a href="https://maps.app.goo.gl/DummyLink1" target="_blank">افتحي على الخريطة 🗺️</a>
+  </div>
+
+  
+  <script>
+    function normalize(text) {
+      return text.trim().toLowerCase();
+    }
+
+    function checkAnswer(step, correctAnswer) {
+      const userAnswer = normalize(document.getElementById(`answer${step}`).value);
+      const expectedAnswer = normalize(correctAnswer);
+      if (userAnswer === expectedAnswer) {
+        document.getElementById(`question${step}`).classList.add('hidden');
+        document.getElementById(`location${step}`).classList.remove('hidden');
+      } else {
+        alert('حاولي تاني يا قمر 🌙');
+      }
+    }
+
+    function showQuestion(step) {
+      document.getElementById(`question${step}`).classList.remove('hidden');
+    }
+
+    function startGame() {
+      document.getElementById('rules').classList.add('hidden');
+      document.getElementById('question1').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
